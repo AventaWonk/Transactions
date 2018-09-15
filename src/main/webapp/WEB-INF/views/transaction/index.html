@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/base}">
+    <body>
+        <main layout:fragment="content">
+            <div class="container">
+                <h1 class="text-center">List of all existing transactions</h1>
+
+                <div class="row " style="
+                    margin-bottom: 30px;
+                ">
+                    <div class="col-md"></div>
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-group" style="
+                                    background:  0;
+                                    border:  0;
+                                ">Product</label>
+                            </div>
+                            <input id="input-groudp" class="form-control" style="
+                                border-radius: 5px;
+                            ">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-group" style="
+                                    background:  0;
+                                    border:  0;
+                                ">From</label>
+                            </div>
+                            <input id="input-grouddp" class="form-control" style="
+                                border-radius: 5px;
+                            ">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-group" style="
+                                    background:  0;
+                                    border:  0;
+                                ">To</label>
+                            </div>
+                            <input id="input-grodddup" class="form-control" style="
+                                border-radius: 5px;"
+                            >
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="/transaction/create" class="btn btn-outline-primary btn-sm">
+                            Search
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="row ">
+                    <div class="col-md">
+                        <a href="/transaction/create" class="btn btn-outline-primary btn-sm">
+                            Create a new transaction
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-group">Group By:</label>
+                            </div>
+                            <select id="input-group" class="form-control">
+                                <option selected="selected">Default</option>
+                                <option value="product">Product</option>
+                                <option value="date">Date</option>
+                                <option value="count">Count</option>
+                                <option value="total">Total</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-limit">Sort By:</label>
+                            </div>
+                            <select id="input-order" class="form-control">
+                                <option selected="selected">Default</option>
+                                <option>Product (A-Z)</option>
+                                <option>Product (Z-A)</option>
+                                <option>Date (New-Old)</option>
+                                <option>Date (New-Old)</option>
+                                <option>Count ()</option>
+                                <option>Count ()</option>
+                                <option>Total (Low-High)</option>
+                                <option>Total (High-Low)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="input-limit">Show:</label>
+                            </div>
+                            <select id="input-limit" class="form-control">
+                                <option selected="selected">10</option>
+                                <option>25</option>
+                                <option>50</option>
+                                <option>75</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-md">
+                        <thead>
+                            <tr>
+                                <th class="table-col-id">id</th>
+                                <th>Shop Id</th>
+                                <th>Product</th>
+                                <th>Count</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th class="table-col-control"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="transaction : ${transactions}">
+                                <td th:text="${transaction.id}">id</td>
+                                <td th:text="${transaction.shop.id}">Shop</td>
+                                <td th:text="${transaction.product.name}">Product</td>
+                                <td th:text="${transaction.count}">Count</td>
+                                <td th:text="${transaction.total}">Total</td>
+                                <td th:text="${#dates.format(transaction.date, 'dd/MM/yyyy HH:mm:ss')}">Date</td>
+                                <td class="control">
+                                    <a class="control-button" th:href="@{'/transaction/edit/' + ${transaction.id}}">
+                                        <i class="fas fa-lg fa-pen"></i>
+                                    </a>
+                                    <a class="control-button remove" th:href="@{'/transaction/remove/' + ${transaction.id}}">
+                                        <i class="fas fas fa-lg fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row justify-content-center" th:if="${pagesTotal > 1}"
+                     th:with="previousPage = ${currentPage - 1}, nextPage = ${currentPage + 1}">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item" th:if="${currentPage > 1}">
+                                <a class="page-link" th:text="${previousPage}"
+                                   th:href="@{'/transaction/' + ${previousPage}}">
+                                </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" th:text="${currentPage}"
+                                   th:href="@{'/transaction/' + ${currentPage}}">
+                                </a>
+                            </li>
+                            <li class="page-item" th:if="${currentPage < pagesTotal}">
+                                <a class="page-link" th:text="${nextPage}"
+                                   th:href="@{'/transaction/' + ${nextPage}}">
+                                </a>
+                            </li>
+                            <li class="page-item" th:if="${currentPage < pagesTotal - 1}">
+                                <a class="page-link" th:text="'... ' + ${pagesTotal}"
+                                   th:href="@{'/transaction/' + {pagesTotal}}">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

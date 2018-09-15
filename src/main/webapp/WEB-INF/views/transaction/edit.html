@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/base}">
+    <body>
+        <main layout:fragment="content">
+            <div class="container">
+                <h1 th:text ="${transaction} ? 'Update an existing transaction' : 'Add a new transaction'">Edit</h1>
+                <form method="post">
+                    <input type="hidden" name="id" th:value="${transaction?.id}" th:if="${transaction?.id}"\>
+                    <div class="form-group">
+                        <label for="">Select shop</label>
+                        <select class="form-control" id="" name="shopId">
+                            <option th:each="shop : ${shops}" th:value="${shop.id}" th:text="${shop.address}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Select product</label>
+                        <select class="form-control" id="" name="productId">
+                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Count</label>
+                        <input type="text" name="count" class="form-control" id="" th:value="${transaction?.count}"\>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Total</label>
+                        <input type="text" name="total" class="form-control" id="" th:value="${transaction?.total}"\>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>
