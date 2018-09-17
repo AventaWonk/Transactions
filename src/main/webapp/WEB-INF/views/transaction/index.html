@@ -5,55 +5,43 @@
             <div class="container">
                 <h1 class="text-center">List of all existing transactions</h1>
 
-                <div class="row " style="
-                    margin-bottom: 30px;
-                ">
-                    <div class="col-md"></div>
-                    <div class="col-md-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="input-group" style="
-                                    background:  0;
-                                    border:  0;
-                                ">Product</label>
+                <div class="row justify-content-end">
+                    <div class="col-md-auto">
+                        <form class="form-inline form-md" method="post" action="/transaction/search/">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="input-product">
+                                        Product
+                                    </label>
+                                </div>
+                                <!--<input type="text" name="product"  class="form-control"-->
+                                       <!--th:value="${product}">-->
+                                <select name="product" id="input-product" style="width: 300px;"></select>
                             </div>
-                            <input id="input-groudp" class="form-control" style="
-                                border-radius: 5px;
-                            ">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="input-group" style="
-                                    background:  0;
-                                    border:  0;
-                                ">From</label>
+                            <div class="input-group input-group-sm mx-sm-2 mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="input-start">
+                                        Start
+                                    </label>
+                                </div>
+                                <input name="start" id="input-start" class="form-control"
+                                       th:value="${#dates.format(start, 'dd/MM/yyyy HH:mm')}">
                             </div>
-                            <input id="input-grouddp" class="form-control" style="
-                                border-radius: 5px;
-                            ">
-                        </div>
+                            <div class="input-group input-group-sm mx-sm-2 mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="input-end">
+                                        End
+                                    </label>
+                                </div>
+                                <input name="end" id="input-end" class="form-control"
+                                       th:value="${#dates.format(end, 'dd/MM/yyyy HH:mm')}">
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm ml-2 mb-3">
+                                Search
+                            </button>
+                        </form>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="input-group input-group-sm">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="input-group" style="
-                                    background:  0;
-                                    border:  0;
-                                ">To</label>
-                            </div>
-                            <input id="input-grodddup" class="form-control" style="
-                                border-radius: 5px;"
-                            >
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <a href="/transaction/create" class="btn btn-outline-primary btn-sm">
-                            Search
-                        </a>
-                    </div>
                 </div>
 
 
@@ -82,18 +70,18 @@
                     <div class="col-md-3">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="input-limit">Sort By:</label>
+                                <label class="input-group-text" for="input-order">Sort By:</label>
                             </div>
                             <select id="input-order" class="form-control">
                                 <option selected="selected">Default</option>
-                                <option>Product (A-Z)</option>
-                                <option>Product (Z-A)</option>
-                                <option>Date (New-Old)</option>
-                                <option>Date (New-Old)</option>
-                                <option>Count ()</option>
-                                <option>Count ()</option>
-                                <option>Total (Low-High)</option>
-                                <option>Total (High-Low)</option>
+                                <option data-sort="product.name" data-order="asc">Product (A-Z)</option>
+                                <option data-sort="product.name" data-order="desc">Product (Z-A)</option>
+                                <option data-sort="date" data-order="asc">Date (Newest)</option>
+                                <option data-sort="date" data-order="desc">Date (Oldest)</option>
+                                <option data-sort="count" data-order="asc">Count ()</option>
+                                <option data-sort="count" data-order="desc">Count ()</option>
+                                <option data-sort="total" data-order="asc">Amount (Large-Small)</option>
+                                <option data-sort="total" data-order="desc">Amount (Small-Large)</option>
                             </select>
                         </div>
                     </div>
@@ -104,11 +92,11 @@
                                 <label class="input-group-text" for="input-limit">Show:</label>
                             </div>
                             <select id="input-limit" class="form-control">
-                                <option selected="selected">10</option>
-                                <option>25</option>
-                                <option>50</option>
-                                <option>75</option>
-                                <option>100</option>
+                                <option data-limit="10" selected="selected">10</option>
+                                <option data-limit="25" >25</option>
+                                <option data-limit="50" >50</option>
+                                <option data-limit="75" >75</option>
+                                <option data-limit="100" >100</option>
                             </select>
                         </div>
                     </div>
@@ -132,7 +120,7 @@
                                 <td th:text="${transaction.shop.id}">Shop</td>
                                 <td th:text="${transaction.product.name}">Product</td>
                                 <td th:text="${transaction.count}">Count</td>
-                                <td th:text="${transaction.total}">Total</td>
+                                <td th:text="${transaction.total}">Amount</td>
                                 <td th:text="${#dates.format(transaction.date, 'dd/MM/yyyy HH:mm:ss')}">Date</td>
                                 <td class="control">
                                     <a class="control-button" th:href="@{'/transaction/edit/' + ${transaction.id}}">
@@ -147,28 +135,37 @@
                     </table>
                 </div>
 
-                <div class="row justify-content-center" th:if="${pagesTotal > 1}"
+                <div class="row total-amount-row justify-content-end" th:if="${totalAmount}">
+                    <span>Total amount: <span th:text="${totalAmount}"></span></span>
+                </div>
+
+                <div class="row justify-content-center" th:if="${totalPages > 1}"
                      th:with="previousPage = ${currentPage - 1}, nextPage = ${currentPage + 1}">
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
+                            <li class="page-item" th:if="${currentPage > 2}">
+                                <a class="page-link" th:href="@{/transaction/1(limit=${limit}, sort=${sort}, order=${order})}">
+                                    1
+                                </a>
+                            </li>
                             <li class="page-item" th:if="${currentPage > 1}">
                                 <a class="page-link" th:text="${previousPage}"
-                                   th:href="@{'/transaction/' + ${previousPage}}">
+                                   th:href="@{'/transaction/'+ ${previousPage}(limit=${limit}, sort=${sort}, order=${order})}">
                                 </a>
                             </li>
                             <li class="page-item active">
                                 <a class="page-link" th:text="${currentPage}"
-                                   th:href="@{'/transaction/' + ${currentPage}}">
+                                   th:href="@{'/transaction/' + ${currentPage}(limit=${limit}, sort=${sort}, order=${order})}">
                                 </a>
                             </li>
-                            <li class="page-item" th:if="${currentPage < pagesTotal}">
+                            <li class="page-item" th:if="${currentPage < totalPages}">
                                 <a class="page-link" th:text="${nextPage}"
-                                   th:href="@{'/transaction/' + ${nextPage}}">
+                                   th:href="@{'/transaction/' + ${nextPage}(limit=${limit}, sort=${sort}, order=${order})}">
                                 </a>
                             </li>
-                            <li class="page-item" th:if="${currentPage < pagesTotal - 1}">
-                                <a class="page-link" th:text="'... ' + ${pagesTotal}"
-                                   th:href="@{'/transaction/' + {pagesTotal}}">
+                            <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                                <a class="page-link" th:text="'...' + ${totalPages}"
+                                   th:href="@{'/transaction/' + ${totalPages}(limit=${limit}, sort=${sort}, order=${order})}">
                                 </a>
                             </li>
                         </ul>

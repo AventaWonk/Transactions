@@ -4,21 +4,24 @@
         <main layout:fragment="content">
             <div class="container">
                 <h1 class="text-center" th:text ="${shop} ? 'Update an existing shop' : 'Add a new shop'">Edit</h1>
-                <div class="col-md-6">
-                    <form method="post" >
-                        <div class="form-group" th:if="${shop?.id}">
-                            <label for="exampleFormControlInput2">Id</label>
-                            <input readonly type="text" class="form-control-plaintext" id="exampleFormControlInput2" name="id" th:value="${shop?.id}"\>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Address</label>
-                            <input type="text" name="address" class="form-control" id="exampleFormControlInput1" th:value="${shop?.address}"\>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </form>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6">
+                        <form method="post" th:action="${shop} ? '/shop/update' : '/shop/save'">
+                            <div class="form-group" th:if="${shop}">
+                                <label>Id</label>
+                                <input type="text" name="id" class="form-control-plaintext" readonly
+                                       th:value="${shop.id}"\>
+                            </div>
+                            <div class="form-group">
+                                <label for="addressInput">Address</label>
+                                <textarea type="text" name="address" class="form-control" id="addressInput"
+                                          rows="3">[[${shop?.address}]]</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
                 </div>
-
             </div>
         </main>
     </body>

@@ -3,15 +3,25 @@
     <body>
         <main layout:fragment="content">
             <div class="container">
-                <h1 th:text ="${product} ? 'Update an existing product' : 'Add a new product'">Edit</h1>
-                <form method="post">
-                    <input type="hidden" name="id" th:value="${product?.id}" th:if="${product?.id}"\>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
-                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" th:value="${product?.name}"\>
+                <h1 class="text-center" th:text ="${product} ? 'Update an existing product' : 'Add a new product'">Edit</h1>
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6">
+                        <form method="post" th:action="${product} ? '/product/update' : '/product/save'">
+                            <div class="form-group" th:if="${product}">
+                                <label>Id</label>
+                                <input type="text" name="id" class="form-control-plaintext" readonly
+                                       th:value="${product.id}"\>
+                            </div>
+                            <div class="form-group">
+                                <label for="nameInput">Name</label>
+                                <input type="text" name="name" class="form-control" id="nameInput"
+                                       th:value="${product?.name}"\>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                </div>
             </div>
         </main>
     </body>

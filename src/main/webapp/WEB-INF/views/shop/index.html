@@ -53,13 +53,18 @@
                     </table>
                 </div>
 
-                <div class="row justify-content-center" th:if="${pagesTotal > 1}"
+                <div class="row justify-content-center" th:if="${totalPages > 1}"
                      th:with="previousPage = ${currentPage - 1}, nextPage = ${currentPage + 1}">
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
+                            <li class="page-item" th:if="${currentPage > 2}">
+                                <a class="page-link" th:href="@{/shop/1(limit=${limit})}">
+                                    1
+                                </a>
+                            </li>
                             <li class="page-item" th:if="${currentPage > 1}">
                                 <a class="page-link" th:text="${previousPage}"
-                                   th:href="@{'/shop/' + ${previousPage}(limit=${limit})}">
+                                   th:href="@{'/shop/'+ ${previousPage}(limit=${limit})}">
                                 </a>
                             </li>
                             <li class="page-item active">
@@ -67,14 +72,14 @@
                                    th:href="@{'/shop/' + ${currentPage}(limit=${limit})}">
                                 </a>
                             </li>
-                            <li class="page-item" th:if="${currentPage < pagesTotal}">
+                            <li class="page-item" th:if="${currentPage < totalPages}">
                                 <a class="page-link" th:text="${nextPage}"
                                    th:href="@{'/shop/' + ${nextPage}(limit=${limit})}">
-                                   </a>
+                                </a>
                             </li>
-                            <li class="page-item" th:if="${currentPage < pagesTotal - 1}">
-                                <a class="page-link" th:text="${pagesTotal}"
-                                   th:href="@{'/shop/' + ${pagesTotal}(limit=${limit})}">
+                            <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                                <a class="page-link" th:text="'...' + ${totalPages}"
+                                   th:href="@{'/shop/' + ${totalPages}(limit=${limit})}">
                                 </a>
                             </li>
                         </ul>
