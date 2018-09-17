@@ -1,0 +1,70 @@
+h1 {
+    font-size: 1.8em;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.table-md > thead > tr > .table-col-id {
+    width: 15%;
+}
+
+.table-md > thead > tr > .table-col-control {
+    width: 12%;
+}
+
+.table-md > thead {
+    background-color: beige;
+}
+
+.table-md > thead > tr > th {
+    border: 0;
+}
+
+.table-md th, .table-md td {
+    border: 0;
+}
+
+.control {
+    padding: 0;
+}
+
+.control > .control-button {
+    font-size: .8em;
+    color: #4c4c4c;
+    padding: 5px;
+}
+
+.control > .control-button:hover {
+    text-decoration: none;
+}
+
+.control > .remove {
+    color: #a33131;
+}
+
+.pagination {
+    margin-bottom: 40px;
+}
+
+.form-md .input-group-text {
+    background-color: transparent;
+    border: 0;
+}
+
+.form-md .form-control {
+    border-radius: 5px !important;
+}
+
+.bg-primary-dark {
+    background-color: #1d4875 !important;
+}
+
+.total-amount-row {
+    font-weight: bold;
+    background-color: #dce0f5;
+    padding: 13px;
+}
