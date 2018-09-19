@@ -6,15 +6,18 @@ Simple transaction managment system
   * OpenJDK 1.8+
   * Postgres 8+
 ## Installation
-1 Install postgress, maven and openJDK if needed 
-**In Ubuntu system
+1 Install postgress, maven and openJDK if needed
+
+*In Ubuntu system:*
 ```
 $ sudo apt update
 $ sudo apt install postgresql postgresql-contrib maven openjdk-9-jdk 
 ```
 
-2 Add a new user into postgreSQL with creditionals dbadmin/dbadmin
-3 Create database tables
+2 Add a new user into postgreSQL with creditionals dbadmin/dbadmin by `psql` [`Instruction`](https://www.postgresql.org/docs/9.3/static/app-createuser.html)
+
+3 Create database tables by `psql` [`Instruction`](https://www.postgresql.org/docs/9.1/static/sql-createdatabase.html)
+
 
 ```sql
 CREATE TABLE public.store_transaction
@@ -41,14 +44,15 @@ CREATE TABLE public.product
     name varchar(255)
 );
 ```
-4 Compile the source code of the project by maven
+4 Compile the source code of the project by `maven`
 ```
 $ mvn compile
 ```
 
-5 Build an executable WAR  by maven
+5 Now you can build a WAR archive by `maven`
 ```
 $ maven package
 ```
 
-6 Now you can deploy your's built war to application server
+6 Congratulations, you can deploy built war to your's application server
+
