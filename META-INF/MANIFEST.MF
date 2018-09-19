@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: /home/roman/IdeaProjects/testtask/src/main/java/
+Main-Class:  ru.iac.testtask.config.AppInitializer
+

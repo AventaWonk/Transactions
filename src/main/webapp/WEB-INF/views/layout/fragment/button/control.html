@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <div th:fragment="control (entityName, id)">
+            <a class="control-button" th:href="@{'/'+${entityName}+'/edit/'+${id}}">
+                <i class="fas fa-lg fa-pen"></i>
+            </a>
+            <a class="control-button remove" th:href="@{'/'+${entityName}+'/remove/'+${id}}">
+                <i class="fas fas fa-lg fa-times"></i>
+            </a>
+        </div>
+
+    </body>
+
+</html>

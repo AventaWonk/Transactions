@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <div class="input-group input-group-sm" th:fragment="order">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputOrder">Sort By:</label>
+            </div>
+            <select id="inputOrder" class="form-control">
+                <option selected="selected" data-is-default="1">Default</option>
+                <option data-sort="product.name" data-order="desc">Product (A-Z)</option>
+                <option data-sort="product.name" data-order="asc">Product (Z-A)</option>
+                <option data-sort="date" data-order="desc">Date (Newest)</option>
+                <option data-sort="date" data-order="asc">Date (Oldest)</option>
+                <option data-sort="quantity" data-order="desc">Count (Largest)</option>
+                <option data-sort="quantity" data-order="asc">Count (Smallest)</option>
+                <option data-sort="amount" data-order="desc">Amount (Large-Small)</option>
+                <option data-sort="amount" data-order="asc">Amount (Small-Large)</option>
+            </select>
+        </div>
+
+    </body>
+
+</html>

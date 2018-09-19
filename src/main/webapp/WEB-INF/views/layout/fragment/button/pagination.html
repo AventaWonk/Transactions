@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <nav aria-label="Page navigation"
+             th:fragment="pagination (entityName, currentPage, totalPages)">
+            <ul class="pagination"
+                th:with="previousPage = ${currentPage - 1}, nextPage = ${currentPage + 1},
+                urlParams = ${#strings.defaultString(#httpServletRequest.queryString, '')}">
+                <li class="page-item" th:if="${currentPage > 2}">
+                    <a class="page-link" th:href="@{'/'+${entityName}+'/1?'+${urlParams}}">
+                        1
+                    </a>
+                </li>
+                <li class="page-item" th:if="${currentPage > 1}">
+                    <a class="page-link" th:text="${previousPage}"
+                       th:href="@{'/'+${entityName}+'/'+${previousPage}+'?'+${urlParams}}">
+                    </a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" th:text="${currentPage}"
+                       th:href="@{'/'+${entityName}+'/'+${currentPage}+'?'+${urlParams}}">
+                    </a>
+                </li>
+                <li class="page-item" th:if="${currentPage < totalPages}">
+                    <a class="page-link" th:text="${nextPage}"
+                       th:href="@{'/'+${entityName}+'/'+${nextPage}+'?'+${urlParams}}">
+                    </a>
+                </li>
+                <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                    <a class="page-link" th:text="'...'+${totalPages}"
+                       th:href="@{'/'+${entityName}+'/'+${totalPages}+'?'+${urlParams}}">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </body>
+
+</html>

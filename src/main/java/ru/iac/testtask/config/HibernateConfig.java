@@ -21,7 +21,6 @@ import java.util.Properties;
 @PropertySource(value = "classpath:db.properties")
 public class HibernateConfig {
 
-    @Autowired
     private Environment env;
 
     @Bean
@@ -53,8 +52,12 @@ public class HibernateConfig {
     private Properties getHibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.put(AvailableSettings.DIALECT, env.getProperty("hibernate.dialect"));
-        hibernateProperties.put(AvailableSettings.SHOW_SQL, "true");
 
         return hibernateProperties;
+    }
+
+    @Autowired
+    public void setEnv(Environment env) {
+        this.env = env;
     }
 }

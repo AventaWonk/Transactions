@@ -3,7 +3,7 @@
     <body>
         <main layout:fragment="content">
             <div class="container">
-                <h1 class="text-center">List of all existing transactions</h1>
+                <h1 class="text-center">Transaction search</h1>
 
                 <div class="row justify-content-end">
                     <div class="col-md-auto" th:include="~{layout/fragment/form/search}"></div>
@@ -16,7 +16,6 @@
                         </a>
                     </div>
 
-                    <div class="col-md-3" th:include="~{layout/fragment/select/group}"></div>
                     <div class="col-md-3" th:include="~{layout/fragment/select/order}"></div>
                     <div class="col-md-2" th:include="~{layout/fragment/select/limit}"></div>
                 </div>
@@ -51,7 +50,14 @@
                 </div>
 
                 <div class="row amount-row justify-content-center" th:if="${transactions.size() == 0}">
-                    The table is empty
+                    No transactions to show
+                </div>
+
+                <div class="row total-amount-row justify-content-end" th:if="${totalAmount}">
+                    <span>
+                        Total amount:
+                        <span th:text="${totalAmount}"></span>
+                    </span>
                 </div>
 
                 <div class="row justify-content-center" th:if="${totalPages > 1}"

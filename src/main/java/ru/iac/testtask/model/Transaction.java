@@ -2,7 +2,9 @@ package ru.iac.testtask.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "Store_transaction")
 public class Transaction {
@@ -19,12 +21,23 @@ public class Transaction {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private int count;
+    private int quantity;
 
-    private BigDecimal total;
+    private BigDecimal amount;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    public static List<String> getSortableColumns() {
+        String[] columns = {
+                "product.name",
+                "quantity",
+                "amount",
+                "date"
+        };
+
+        return Arrays.asList(columns);
+    }
 
     public int getId() {
         return id;
@@ -53,21 +66,21 @@ public class Transaction {
         return this;
     }
 
-    public int getCount() {
-        return count;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public Transaction setCount(int count) {
-        this.count = count;
+    public Transaction setQuantity(int quantity) {
+        this.quantity = quantity;
         return this;
     }
 
-    public BigDecimal getTotal() {
-        return total;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public Transaction setTotal(BigDecimal total) {
-        this.total = total;
+    public Transaction setAmount(BigDecimal amount) {
+        this.amount = amount;
         return this;
     }
 

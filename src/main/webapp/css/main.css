@@ -68,3 +68,29 @@ h1 {
     background-color: #dce0f5;
     padding: 13px;
 }
+
+.select-product-name {
+
+}
+
+.select-product-id {
+    font-size: .8em;
+    padding: 3px;
+    float: right;
+}
+
+.select2-selection {
+    border-radius: 5px !important;
+}
+
+.invalid-feedback {
+    display: block;
+}
+
+.w-2 {
+    width: 230px;
+}
+
+.alert {
+    margin: 1em;
+}

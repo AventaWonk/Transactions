@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <form class="form-inline form-md" method="post" action="/transaction/search/" autocomplete="off"
+            th:fragment="search">
+            <div class="input-group input-group-sm mb-3 w-2">
+
+                <select name="product" id="inputProduct" class="form-control ">
+                    <option selected th:if="${product}"
+                            th:value="${product.id}"
+                            th:text="${product.name}">
+                    </option>
+                    <option></option>
+                </select>
+            </div>
+            <div class="input-group input-group-sm mx-sm-2 mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputStart">
+                        Start
+                    </label>
+                </div>
+                <input name="start" id="inputStart" class="form-control" placeholder="Select a start date..."
+                       th:value="${#dates.format(start, 'dd/MM/yyyy HH:mm')}">
+            </div>
+            <div class="input-group input-group-sm mx-sm-2 mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputEnd">
+                        End
+                    </label>
+                </div>
+                <input name="end" id="inputEnd" class="form-control" placeholder="Select an end date..."
+                       th:value="${#dates.format(end, 'dd/MM/yyyy HH:mm')}">
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-sm ml-2 mb-3">
+                Search
+            </button>
+        </form>
+
+    </body>
+
+</html>

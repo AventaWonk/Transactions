@@ -13,8 +13,7 @@ import javax.servlet.ServletContext;
 @Configuration
 public class ViewConfig {
 
-    @Autowired
-    ServletContext servletContext;
+    private ServletContext servletContext;
 
     @Bean
     public ThymeleafViewResolver getViewResolver(SpringTemplateEngine springTemplateEngine) {
@@ -43,4 +42,8 @@ public class ViewConfig {
         return springTemplateEngine;
     }
 
+    @Autowired
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
 }

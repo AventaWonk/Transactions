@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout/base}">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/base}">
     <body>
         <main layout:fragment="content">
             <div class="container">
@@ -8,15 +8,21 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-6">
                         <form method="post" th:action="${shop} ? '/shop/update' : '/shop/save'">
-                            <div class="form-group" th:if="${shop}">
-                                <label>Id</label>
-                                <input type="text" name="id" class="form-control-plaintext" readonly
-                                       th:value="${shop.id}"\>
+                            <div class="form-group row" th:if="${shop}">
+                                <label class="col-sm-1 col-form-label">Id:</label>
+                                <div class="col-sm-10">
+                                    <input readonly type="text" name="id" class="form-control-plaintext"
+                                           th:value="${shop.id}">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="addressInput">Address</label>
-                                <textarea type="text" name="address" class="form-control" id="addressInput"
+                                <label for="inputAddress">Address</label>
+                                <textarea required name="address" class="form-control" id="inputAddress"
                                           rows="3">[[${shop?.address}]]</textarea>
+
+                                <div class="invalid-feedback"  th:each="error : ${errors}">
+                                    <span th:text="${error.defaultMessage}"></span>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>

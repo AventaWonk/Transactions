@@ -1,30 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<body>
-    <header th:fragment="header" class="navbar navbar-dark navbar-expand-md bg-primary-dark">
+<html xmlns:th="http://www.thymeleaf.org">
 
-        <div class="container">
-            <a class="navbar-brand" href="#">IAC Test task</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
-                    aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <body>
 
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/shop/">Shops</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/product/">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/transaction/">Transactions</a>
-                    </li>
-                </ul>
+        <header th:fragment="header" class="navbar navbar-dark navbar-expand-md bg-primary-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">IAC Test task</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/shop/">Shops</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/product/">Products</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/transaction/">Transactions</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </header>
 
-    </header>
-</body>
+    </body>
 </html>
