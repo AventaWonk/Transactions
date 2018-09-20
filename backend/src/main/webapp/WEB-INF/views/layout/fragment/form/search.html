@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <form class="form-row form-md row justify-content-end" method="post" action="/transaction/search/" autocomplete="off"
+            th:fragment="search">
+
+            <div class="col-md-3">
+                <div class="input-group input-group-sm mb-3">
+                    <select name="product" id="inputProduct" class="form-control">
+                        <option selected th:if="${product}"
+                                th:value="${product.id}" th:text="${product.name}">
+                        </option>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="input-group input-group-sm mx-sm-2 mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputStart">
+                            Start
+                        </label>
+                    </div>
+                    <input name="start" id="inputStart" class="form-control" placeholder="Select start date..."
+                           th:value="${#dates.format(start, 'dd/MM/yyyy HH:mm')}">
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="input-group input-group-sm mx-sm-2 mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputEnd">
+                            End
+                        </label>
+                    </div>
+                    <input name="end" id="inputEnd" class="form-control" placeholder="Select end date..."
+                           th:value="${#dates.format(end, 'dd/MM/yyyy HH:mm')}">
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-outline-primary btn-sm ml-2 mb-3">
+                    Search
+                </button>
+            </div>
+
+        </form>
+
+    </body>
+
+</html>

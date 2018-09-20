@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <div class="input-group input-group-sm" th:fragment="limit">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputLimit">Show:</label>
+            </div>
+            <select id="inputLimit" class="form-control">
+                <option data-limit="5">5</option>
+                <option selected data-limit="10">10</option>
+                <option data-limit="25">25</option>
+                <option data-limit="50">50</option>
+                <option data-limit="75">75</option>
+                <option data-limit="100">100</option>
+            </select>
+
+        </div>
+
+    </body>
+
+</html>

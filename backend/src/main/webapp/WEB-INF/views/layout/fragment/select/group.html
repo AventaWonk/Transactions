@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <div class="input-group input-group-sm" th:fragment="group">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroup">Group By:</label>
+            </div>
+            <select id="inputGroup" class="form-control">
+                <option selected="selected" data-is-default="1">None</option>
+                <option data-group="product">Product</option>
+                <option data-group="date">Date</option>
+                <option data-group="quantity">Quantity</option>
+                <option data-group="amount">Total</option>
+            </select>
+        </div>
+
+    </body>
+
+</html>
