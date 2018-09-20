@@ -44,12 +44,12 @@ CREATE TABLE public.product
     name varchar(255)
 );
 ```
-4 Compile the source code of the project by `maven`
+4 Compile source code of the project with `maven`
 ```
 $ mvn compile
 ```
 
-5 Now you can build a WAR archive by `maven`
+5 Now you can build a WAR archive with `maven`
 ```
 $ maven package
 ```
